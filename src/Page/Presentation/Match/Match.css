@@ -1,0 +1,82 @@
+
+.MatchPage__Header--Box {
+  height: 8vh;
+  width: 100vw;
+}
+.MatchPage__Header--BackColor {
+  height: 100%;
+  width: 100%;
+  background-color: #FED500;
+}
+.MatchPage__Header--Icon {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url(./image/icon-final.trans.svg);
+}
+.MatchPage__SortTag--Box {
+  text-align: center;
+  margin-top: 16px;
+}
+.MatchPage__SortTag--Icon {
+  height: 40px;
+  width: 40px;
+  background-color: #C4C4C4;
+  border-radius: 50%;
+  display: inline-flex;
+  margin: 0 8%;
+}
+.MatchPage__SortTag--BottomBar {
+  width: 70%;
+  margin-top: 0.5%;
+}
+
+.MatchPage__MatchIcon--Box {
+  width: 40vw;
+  height: 40vw;
+  text-align: center;
+  position: relative;
+  text-align: center;
+  float: left;
+}
+.MatchPage__MatchIcon--Box:nth-child(odd) {
+  margin: 2vw 2vw 1vw 8vw 
+}   
+.MatchPage__MatchIcon--Box:nth-child(even) {
+  margin: 2vw auto 1vw 2vw;
+}
+
+.MatchPage__MatchIcon--Image--Box {
+  height: 80%;
+  width: 80%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(#6DD5C3, #00BCE3);
+  margin-left: 10%;
+}
+.MatchPage__MatchIcon--Background--Color {
+  height: 90%;
+  width: 90%;
+  margin: 5%;
+  background-color: #C4C4C4;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.MatchPage__MatchIcon--Image {
+  height: 100%;
+  width: auto;
+}
+.MatchPage__Time--Box {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 70%;
+  margin-left: 15%;
+}
+.MatchPage__Time--Frame {
+  background-color: #E4E4E4;
+  padding: 0.2em 0.2em;
+  border-radius: 1.2em;
+  width: 100%;
+}

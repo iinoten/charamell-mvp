@@ -1,0 +1,185 @@
+.Edit__Page {
+  background-color: #FED500;
+  height: 100vh;
+  width: 100vw;
+}
+
+.Edit__Page--Title {
+  padding: 16%;
+  padding-bottom: 8%;
+}
+.Edit__Page--Title--h2 {
+  margin: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.Edit__Page--SelectBox {
+  background-color: #fff;
+  width: 90vw;
+  height: 64vh;
+  border-radius: 10px;
+  margin-left: 5vw;
+  padding-top: 1px;
+  margin-bottom: 20px;
+}
+.Edit__Page--Picture--Input--Box {
+  margin-left: 11%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.Edit__Page--Content--Second {
+  margin-top: 24px;
+}
+.Edit__Page--Input--Box {
+  width: 30vw;
+  height: 30vw;
+  border-color: #E3E3E3;
+  border: solid 4px #E3E3E3;
+  float: left;
+  margin: 2%;
+  position: relative;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+.Edit__Page--Input--Box--DeleteButton {
+  height: 30%;
+  width: 30%;
+  background: url('./Icons/DeleteIcon.png') no-repeat center center;
+  background-size: contain;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(40%) translateY(-40%)
+}
+.Edit__Page--Input--Image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+.Edit__Page--Picture--Input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+}
+.Edit__Page--Input--Profile {
+  text-align: center;
+}
+.Edit__Page--Input--ShowName {
+  color: #444;
+  font-weight: 500;
+  font-size: 1.6em;
+  text-align: center;
+  border: none;
+  width: 70%;
+  outline: none;
+}
+.Edit__Page--Input--StatusMessage {
+  color: #444;
+  font-weight: 500;
+  font-size: 1.2em;
+  text-align: center;
+  outline: none;
+  border: none;
+}
+.Edit__Page--SelectBox--NextTag {
+  text-align: right;
+  color: #444;
+  margin-right: 10%;
+  margin-top: 16px;
+  font-size: 1.1em;
+}
+.Edit__Page--SelectColor {
+  text-align: center;
+}
+.Edit__Page--SelectColor--ColorMarker {
+  width: 3em;
+  height: 3em;
+  display: inline-block;
+  border-radius: 50%;
+  position: relative;
+}
+.Edit__Page--SelectColor--Title {
+  font-weight: 600;
+  display: inline-block;
+  color: #444;
+  margin-left: 16px;
+}
+.Edit__Page--SelectTag--Box {
+  text-align: center;
+  margin-top: 24px;
+}
+.Edit__Page--SelectTag--Input {
+  width: 70%;
+  height: 48px;
+  color: #444;
+  border: solid #C4C4C4 2px;
+  border-radius: 24px;
+  line-height: 42px;
+  margin-left: 15%;
+  margin-top: 8px;
+  position: relative;
+}
+.Edit__Page--TagMessage--Input {
+  border: none;
+  outline: none;
+  width: 70%;
+  margin-left: 20% !important;
+  font-size: 0.8em;
+  color: #444;
+}
+.Edit__Page--SelectTag--Input--Icon {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: #C4C4C4;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 50%; 
+  background-size: contain;
+}
+.Edit__Page--Time--Slider {
+  margin-left: 15%;
+  width: 70%;
+  margin-top: 16px;
+}
+.Edit__Page--Time--Slider--Title {
+  text-align: left;
+}
+.Edit__Page--Time--Slider--Result--Box {
+  text-align: right;
+}
+.Edit__Page--Time--Slider--Result {
+  margin-right: 0% !important;
+  margin-bottom: 0 !important;
+  display: inline-block;
+}
+.Edit__Second__Page--SelectBox--Footer--Button--Box {
+  position: relative;
+}
+.Edit__Second__Page--SelectBox--BackTag {
+  display: inline-block;
+  position: absolute;
+  left: 15%;
+}
+.Edit__Second__Page--SelectBox--NextTag {
+  display: inline-block;
+  position: absolute;
+  right: 15%;
+}
+
+.EditPage__SelectImage--Icon--Box {
+  display: inline-block;
+  padding: 8px;
+}
+.EditPage__SelectImage--Icon {
+  height: 10vw;
+  width: 10vw;
+}
