@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 import { 
   updateSelectedColor, 
@@ -32,8 +33,22 @@ class ContainerEdit extends Component{
       secondInputImageFile: null,
       thirdInputImageFile: null,
       fourthInputImageFile: null,
-      iconPictureNumber: null
+      iconPictureNumber: null,
+      nowPositon: {
+        lat: null,
+        lng: null
+      },
+      isTransPage: false
     }
+  }
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition((position)=>{
+      console.log(position)
+      this.setState({nowPositon: {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      }})
+    })
   }
   onChange_first_input_image = ( event ) => {
     const files = event.target.files;
@@ -143,22 +158,56 @@ class ContainerEdit extends Component{
     this.props.updateIconImageNumber(value)
   }
   onClick_submit_all_data = () => {
+    /*
     console.log("clicked submit button")
-    axios.post('http://localhost:8080/profile/new', {
+    console.dir({
       "profile": {
-        "name": "kakohate",
+        "name": this.props.nameValue,
         "tag": [
           {
-              "category": "movie", 
-              "detail": "歌舞伎町のTOHOシネマズで天気の子を観たい！"
+              "category": this.props.selectedFirstTagValue, 
+              "detail": this.props.firstTagMessage
           },
           {
-              "category": "caffe",
-              "detail": "スタバでなんか飲みたい!"
+              "category": this.props.selectedSecondTagValue,
+              "detail": this.props.SecondTagMessage
           }
         ],
-        "message": "都内のニートです",
-        "limit": 12,
+        "message": this.props.messageValue,
+        "limit": this.props.waitingTimeValue,
+        "color": this.props.selectedColor,
+        "avatar_url": "https://",
+        "pictures": [
+          {
+            "order": 1,
+            "url": "https://"
+          },
+          {
+            "order": 2,
+            "url": "https://"
+          }
+        ],
+        "coordinate": {
+          "lng": 12.3,
+          "lat": 45.6
+        }
+      }
+    })
+    axios.post('http://localhost:8080/profile/new', {
+      "profile": {
+        "name": this.props.nameValue,
+        "tag": [
+          {
+              "category": this.props.selectedFirstTagValue, 
+              "detail": this.props.firstTagMessage
+          },
+          {
+              "category": this.props.selectedSecondTagValue,
+              "detail": this.props.secondTagMessage
+          }
+        ],
+        "message": this.props.messageValue,
+        "limit": this.props.waitingTimeValue,
         "color": "yellow",
         "avatar_url": "https://",
         "pictures": [
@@ -172,8 +221,8 @@ class ContainerEdit extends Component{
           }
         ],
         "coordinate": {
-          "lng": 35.6909597,
-          "lat": 139.7086971
+          "lng": this.state.nowPositon.lng,
+          "lat": this.state.nowPositon.lat
         }
       }
     })
@@ -183,6 +232,9 @@ class ContainerEdit extends Component{
     .catch(err=>{
       console.log("データのpostに失敗",err)
     })
+    */
+    this.setState({ isTransPage: true })
+    setTimeout( ()=>this.props.history.push('/match'), 350 );
   }
   render(){
     return(
@@ -228,6 +280,7 @@ class ContainerEdit extends Component{
         messageValue={this.props.messageValue}
         firstTagMessage={this.props.firstTagMessage}
         secondTagMessage={this.props.secondTagMessage}
+        isTransPage={this.state.isTransPage}
       />
     );
   }
@@ -256,4 +309,4 @@ const mapStateToProps = state => ({
   slectedIconImageNumber: state.makeCharamell.slectedIconImageNumber
 })
 
-export default connect( mapStateToProps, mapDispatchToProps )( ContainerEdit );
+export default withRouter( connect( mapStateToProps, mapDispatchToProps )( ContainerEdit ) );

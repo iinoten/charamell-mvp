@@ -2,6 +2,8 @@ import React from 'react';
 import posed from 'react-pose';
 import Modal from 'react-modal';
 
+import { BrowserRouter, Route, Link } from 'react-router-dom'
+
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
@@ -17,6 +19,20 @@ import chattingIcon from './Icons/Chatting_Icon.png'
 import bookIcon from './Icons/Book_Icon.png'
 
 import './Edit.css'
+
+const EditTransBox = posed.div({
+  normal: {
+    opacity: 1,
+    pointerEvents: 'auto'
+  },
+  trans: {
+    opacity: 0,
+    pointerEvents: 'none',
+    transition: {
+      duration: 300
+    }
+  }
+})
 
 const ColorCircle = posed.div({
   clicked: {
@@ -283,6 +299,7 @@ const EditSecond = props => (
 )
 
 const Edit = props => (
+  <EditTransBox pose={props.isTransPage?'trans':'normal'}>
   <div className="Edit__Page">
     <div className="Edit__Page--Box">
       <div className="Edit__Page--Title">
@@ -401,6 +418,7 @@ const Edit = props => (
       }
     </div>
   </div>
+  </EditTransBox>
 )
 
 export default Edit;
