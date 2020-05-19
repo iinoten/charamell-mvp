@@ -17,6 +17,8 @@ import lunchIcon from './Icons/Lunch_Icon.png'
 import heartIcon from './Icons/Heart_Icon.png'
 import chattingIcon from './Icons/Chatting_Icon.png'
 import bookIcon from './Icons/Book_Icon.png'
+import groupFiveDot from './Icons/groupFiveDot.svg'
+import addIcon from './Icons/addIcon.svg'
 
 import './Edit.css'
 
@@ -58,6 +60,19 @@ const modalCustomStyles = {
  }
 };
 
+const submitModalCustomStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+    border: 'none !important'
+ },
+ border: 'none;'
+};
+
 const Edit1 = posed.div({
   show: {
     position: "fixed",
@@ -89,7 +104,7 @@ const EditFirst = props => (
           style={ props.firstInputImageFile?
             {backgroundImage: `url(${props.firstInputImageFile})`}
             :
-            {backgroundImage: `url(${teaIcon})`}
+            {backgroundImage: `url(${addIcon})`}
           }
         >
           {props.firstInputImageFile&&<div className="Edit__Page--Input--Box--DeleteButton" onClick={props.onClickFirstDeleteButton} />}
@@ -100,7 +115,7 @@ const EditFirst = props => (
           style={ props.secondInputImageFile?
             {backgroundImage: `url(${props.secondInputImageFile})`}
             :
-            {backgroundImage: `url(${teaIcon})`}
+            {backgroundImage: `url(${addIcon})`}
           }
         >
           {props.secondInputImageFile&&<div className="Edit__Page--Input--Box--DeleteButton" onClick={props.onClickSecondDeleteButton}/>}
@@ -113,7 +128,7 @@ const EditFirst = props => (
           style={ props.thirdInputImageFile?
             {backgroundImage: `url(${props.thirdInputImageFile})`}
             :
-            {backgroundImage: `url(${teaIcon})`}
+            {backgroundImage: `url(${addIcon})`}
           }
         >
           {props.thirdInputImageFile&&<div className="Edit__Page--Input--Box--DeleteButton" onClick={props.onClickThirdDeleteButton}/>}
@@ -124,7 +139,7 @@ const EditFirst = props => (
           style={ props.fourthInputImageFile?
             {backgroundImage: `url(${props.fourthInputImageFile})`}
             :
-            {backgroundImage: `url(${teaIcon})`}
+            {backgroundImage: `url(${addIcon})`}
           }
         >
           {props.fourthInputImageFile&&<div className="Edit__Page--Input--Box--DeleteButton" onClick={props.onClickFourthDeleteButton}/>}
@@ -411,6 +426,26 @@ const Edit = props => (
                 <div className="EditPage__SelectImage--Icon--Box" onClick={()=>props.selectSecondIconHandler("heart")}>
                   <img src={heartIcon} className="EditPage__SelectImage--Icon" />
                 </div>
+              </div>
+            </Modal>
+            <Modal
+              className='EditPage__SubmitModal--Box'
+              isOpen={props.isPopupSubmitModal}
+              style={{
+                content: {
+                top                   : '50%',
+                left                  : '50%',
+                right                 : 'auto',
+                bottom                : 'auto',
+                marginRight           : '-50%',
+                transform             : 'translate(-50%, -50%)',
+                },
+              }}
+              ariaHideApp={false}
+            >
+              <img src={groupFiveDot} />
+              <div className='EditPage__Submitting--Modal--Title'>
+                処理中
               </div>
             </Modal>
           </Edit2>

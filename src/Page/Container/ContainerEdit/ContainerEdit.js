@@ -38,7 +38,8 @@ class ContainerEdit extends Component{
         lat: null,
         lng: null
       },
-      isTransPage: false
+      isTransPage: false,
+      isPopupSubmitModal: false
     }
   }
   componentDidMount() {
@@ -158,9 +159,7 @@ class ContainerEdit extends Component{
     this.props.updateIconImageNumber(value)
   }
   onClick_submit_all_data = () => {
-    /*
-    console.log("clicked submit button")
-    console.dir({
+    console.log({
       "profile": {
         "name": this.props.nameValue,
         "tag": [
@@ -170,12 +169,12 @@ class ContainerEdit extends Component{
           },
           {
               "category": this.props.selectedSecondTagValue,
-              "detail": this.props.SecondTagMessage
+              "detail": this.props.secondTagMessage
           }
         ],
         "message": this.props.messageValue,
         "limit": this.props.waitingTimeValue,
-        "color": this.props.selectedColor,
+        "color": "yellow",
         "avatar_url": "https://",
         "pictures": [
           {
@@ -188,11 +187,12 @@ class ContainerEdit extends Component{
           }
         ],
         "coordinate": {
-          "lng": 12.3,
-          "lat": 45.6
+          "lng": this.state.nowPositon.lng,
+          "lat": this.state.nowPositon.lat
         }
       }
     })
+    this.setState ({isPopupSubmitModal:true})
     axios.post('http://localhost:8080/profile/new', {
       "profile": {
         "name": this.props.nameValue,
@@ -228,13 +228,18 @@ class ContainerEdit extends Component{
     })
     .then((res) => {
       console.log("データのpostに成功",res.data)
+      this.setState({ 
+        isTransPage: true, 
+        isPopupSubmitModal: false
+      })
+      setTimeout( ()=>this.props.history.push('/match'), 350 );
     })
     .catch(err=>{
       console.log("データのpostに失敗",err)
+      this.setState({ 
+        isPopupSubmitModal: false
+      })
     })
-    */
-    this.setState({ isTransPage: true })
-    setTimeout( ()=>this.props.history.push('/match'), 350 );
   }
   render(){
     return(
@@ -281,6 +286,7 @@ class ContainerEdit extends Component{
         firstTagMessage={this.props.firstTagMessage}
         secondTagMessage={this.props.secondTagMessage}
         isTransPage={this.state.isTransPage}
+        isPopupSubmitModal={this.state.isPopupSubmitModal}
       />
     );
   }
