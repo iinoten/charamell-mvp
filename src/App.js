@@ -7,14 +7,7 @@ import firebase from 'firebase'
 
 import ContainerEdit from './Page/Container/ContainerEdit/ContainerEdit';
 import ContainerMatch from './Page/Container/ContainerEdit/ContainerMatch';
-
-firebase.initializeApp({
-  apiKey: "AIzaSyAzYj-cfNsFGmaS0Si_ldZuT65eSN3yP98",
-  authDomain: "charamell-mvp.firebaseapp.com",
-  projectId: "charamell-mvp",
-  databaseURL: "https://charamell-mvp.firebaseio.com",
-  storageBucket: "gs://charamell-mvp.appspot.com'"
-})
+import ContainerChat from './Page/Container/ContainerEdit/ContainerChat';
 
 const store = createStore(reducer)
 
@@ -27,6 +20,7 @@ function App() {
               <Route exact path='/'></Route>
               <Route path='/edit'><ContainerEdit /></Route>
               <Route path='/match'><ContainerMatch /></Route>
+              <Route path='/chat'><ContainerChat /></Route>
           </Switch>
         </div>
       </BrowserRouter>

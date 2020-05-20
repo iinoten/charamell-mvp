@@ -52,8 +52,16 @@
   width: 80%;
   border-radius: 50%;
   overflow: hidden;
-  background: linear-gradient(#6DD5C3, #00BCE3);
   margin-left: 10%;
+}
+.background-purple {
+  background: linear-gradient(#C00AE7, #8A69D4);  
+}
+.background-red {
+  background: linear-gradient(#FFAD93, #FE48C4);  
+}
+.background-blue {
+  background: linear-gradient(#6DD5C3, #00BCE3);
 }
 .MatchPage__MatchIcon--Background--Color {
   height: 90%;

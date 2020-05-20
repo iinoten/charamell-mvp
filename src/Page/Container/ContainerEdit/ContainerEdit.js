@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import firebase from 'firebase'
-import base64ToBlob from 'base64toblob'
 
 import { 
   updateSelectedColor, 
@@ -15,6 +13,8 @@ import {
   updateSecondTagMessage,
   updateIconImageNumber
  } from '../../../action/makeCharamell'
+
+ import { throwSessionId } from '../../../action/throwSessionId'
 
 import Edit from '../../Presentation/Edit/Edit'
 import axios from 'axios';
@@ -161,7 +161,24 @@ class ContainerEdit extends Component{
     this.props.updateIconImageNumber(value)
   }
   onClick_submit_all_data = () => {
-    /*
+    console.log("clicked submit button")
+    const toBlob = (base64) => {
+      var bin = atob(base64.replace(/^.*,/, ''));
+      var buffer = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) {
+        buffer[i] = bin.charCodeAt(i);
+      }
+      // Blobを作成
+      try{
+          var blob = new Blob([buffer.buffer], {
+              type: 'image/png'
+          });
+      }catch (e){
+          return false;
+      }
+      return blob;
+    }
+    this.setState ({isPopupSubmitModal:true})
     console.log({
       "profile": {
         "name": this.props.nameValue,
@@ -182,11 +199,19 @@ class ContainerEdit extends Component{
         "pictures": [
           {
             "order": 1,
-            "url": "https://"
+            "url": this.state.firstInputImageFile || "" 
           },
           {
             "order": 2,
-            "url": "https://"
+            "url":  this.state.secondInputImageFile || "" 
+          },
+          {
+            "order": 3,
+            "url":  this.state.thirdInputImageFile || "" 
+          },
+          {
+            "order": 4,
+            "url":  this.state.fourthInputImageFile || "" 
           }
         ],
         "coordinate": {
@@ -195,7 +220,6 @@ class ContainerEdit extends Component{
         }
       }
     })
-    this.setState ({isPopupSubmitModal:true})
     axios.post('http://localhost:8080/profile/new', {
       "profile": {
         "name": this.props.nameValue,
@@ -216,11 +240,19 @@ class ContainerEdit extends Component{
         "pictures": [
           {
             "order": 1,
-            "url": "https://"
+            "url": this.state.firstInputImageFile || "" 
           },
           {
             "order": 2,
-            "url": "https://"
+            "url":  this.state.secondInputImageFile || "" 
+          },
+          {
+            "order": 3,
+            "url":  this.state.thirdInputImageFile || "" 
+          },
+          {
+            "order": 4,
+            "url":  this.state.fourthInputImageFile || "" 
           }
         ],
         "coordinate": {
@@ -230,7 +262,8 @@ class ContainerEdit extends Component{
       }
     })
     .then((res) => {
-      console.log("データのpostに成功",res.data)
+      console.log("データのpostに成功",res.headers['session-id'])
+      this.props.throwSessionId(res.headers['session-id'])
       this.setState({ 
         isTransPage: true, 
         isPopupSubmitModal: false
@@ -243,36 +276,6 @@ class ContainerEdit extends Component{
         isPopupSubmitModal: false
       })
     })
-    */
-   if(this.state.firstInputImageFile) {
-
-     const toBlob = (base64) => {
-        var bin = atob(base64.replace(/^.*,/, ''));
-        var buffer = new Uint8Array(bin.length);
-        for (var i = 0; i < bin.length; i++) {
-          buffer[i] = bin.charCodeAt(i);
-        }
-        // Blobを作成
-        try{
-            var blob = new Blob([buffer.buffer], {
-                type: 'image/png'
-            });
-        }catch (e){
-            return false;
-        }
-        return blob;
-      }
-     let image_data = toBlob(this.state.firstInputImageFile);
-
-     let storageRef = firebase.storage().ref().child('OGPImages/hogehoge.png')
-     storageRef.put(image_data )
-      .then( url => {
-        console.log( "upload done", url )
-      })
-      .catch( err => {
-        console.log( "upload failed", err )
-      })
-   }
   }
   render(){
     return(
@@ -334,7 +337,9 @@ const mapDispatchToProps = {
   updateMessageValue,
   updateFirstTagMessage,
   updateSecondTagMessage,
-  updateIconImageNumber
+  updateIconImageNumber,
+
+  throwSessionId
 }
 const mapStateToProps = state => ({
   selectedColor: state.makeCharamell.selectedColor,
